@@ -1,0 +1,145 @@
+{
+	"info": {
+		"name": "SIAKAD Microservices",
+		"description": "Postman collection untuk SIAKAD Microservices - Akademik Service (8081) & Rekap Service (8082)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Akademik Service",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"url": "{{akademik_url}}/health"
+					}
+				},
+				{
+					"name": "Tambah Mahasiswa",
+					"request": {
+						"method": "POST",
+						"url": "{{akademik_url}}/api/v1/mahasiswa",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nim\": \"23010001\",\n  \"nama\": \"Bunga\",\n  \"jurusan\": \"Teknik Informatika\",\n  \"status\": \"Aktif\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Daftar Mahasiswa",
+					"request": {
+						"method": "GET",
+						"url": "{{akademik_url}}/api/v1/mahasiswa"
+					}
+				},
+				{
+					"name": "Detail Mahasiswa",
+					"request": {
+						"method": "GET",
+						"url": "{{akademik_url}}/api/v1/mahasiswa/23010001"
+					}
+				},
+				{
+					"name": "Update Mahasiswa",
+					"request": {
+						"method": "PUT",
+						"url": "{{akademik_url}}/api/v1/mahasiswa/23010001",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nim\": \"23010001\",\n  \"nama\": \"Bunga Updated\",\n  \"jurusan\": \"Teknik Informatika\",\n  \"status\": \"Aktif\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Hapus Mahasiswa",
+					"request": {
+						"method": "DELETE",
+						"url": "{{akademik_url}}/api/v1/mahasiswa/23010001"
+					}
+				},
+				{
+					"name": "Input Nilai",
+					"request": {
+						"method": "POST",
+						"url": "{{akademik_url}}/api/v1/mahasiswa/23010001/nilai",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"kode_mk\": \"MK001\",\n  \"nama_mk\": \"Algoritma\",\n  \"sks\": 3,\n  \"mutu\": 4.0\n}"
+						}
+					}
+				},
+				{
+					"name": "Transkrip Mahasiswa",
+					"request": {
+						"method": "GET",
+						"url": "{{akademik_url}}/api/v1/mahasiswa/23010001/transkrip"
+					}
+				},
+				{
+					"name": "Ringkasan (Internal Contract)",
+					"request": {
+						"method": "GET",
+						"url": "{{akademik_url}}/api/v1/mahasiswa/23010001/ringkasan"
+					}
+				}
+			]
+		},
+		{
+			"name": "Rekap Service",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"url": "{{rekap_url}}/health"
+					}
+				},
+				{
+					"name": "Rekap Per Jurusan",
+					"request": {
+						"method": "GET",
+						"url": "{{rekap_url}}/api/v1/rekap/jurusan"
+					}
+				},
+				{
+					"name": "Top IPK",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{rekap_url}}/api/v1/rekap/top-ipk?n=3",
+							"query": [{"key": "n", "value": "3"}]
+						}
+					}
+				},
+				{
+					"name": "Rekap Mahasiswa by NIM",
+					"request": {
+						"method": "GET",
+						"url": "{{rekap_url}}/api/v1/rekap/mahasiswa/23010001"
+					}
+				},
+				{
+					"name": "Rekap Mahasiswa Not Found (404)",
+					"request": {
+						"method": "GET",
+						"url": "{{rekap_url}}/api/v1/rekap/mahasiswa/99999999"
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{"key": "akademik_url", "value": "http://localhost:8081"},
+		{"key": "rekap_url", "value": "http://localhost:8082"}
+	]
+}
