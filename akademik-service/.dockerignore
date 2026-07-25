@@ -1,0 +1,9 @@
+*.exe
+*.test
+.env
+.git
+.gitignore
+.vscode
+.idea
+__debug_bin
+tmp/
